@@ -1,16 +1,7 @@
 from web3 import Web3
 
-# Connect to the Ethereum network using a public RPC endpoint
 w3 = Web3(Web3.HTTPProvider('https://arb1.arbitrum.io/rpc'))
-
-# Wallet address to check the balance for
 wallet_address = '0xA12dCA97991575fFBEC9F75943c4A4B034d30f39'
-
-# Fetch Ethereum balance from the wallet
 eth_balance = w3.eth.get_balance(wallet_address)
-
-# Convert the balance from wei to ether
 eth_balance_ether = w3.from_wei(eth_balance, 'ether')
-
-# Print the balance
 print(f"The Ethereum balance for wallet address {wallet_address} is: {eth_balance_ether} ETH")
