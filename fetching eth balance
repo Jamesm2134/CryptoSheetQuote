@@ -1,7 +1,0 @@
-from web3 import Web3
-
-w3 = Web3(Web3.HTTPProvider('https://arb1.arbitrum.io/rpc'))
-wallet_address = '0xA12dCA97991575fFBEC9F75943c4A4B034d30f39'
-eth_balance = w3.eth.get_balance(wallet_address)
-eth_balance_ether = w3.from_wei(eth_balance, 'ether')
-print(f"The Ethereum balance for wallet address {wallet_address} is: {eth_balance_ether} ETH")
