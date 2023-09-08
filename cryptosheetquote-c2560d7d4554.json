@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "cryptosheetquote",
+  "private_key_id": "c2560d7d4554fb961cdabc4c4ee7591d53334e2e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCySiIBbAcjZxny\nlhqh0zExLAGfFlGwYGEyAXUcEjVXp3o+YQNhnTD5e8MjKoD2Ni099EJ6nJcj1H2E\nncDY5ix338H6b4j8NfLVSUugzMHMA94k6lziAGNhlI58OKAVLHH5JAE3Qr9hnd7q\nwQ8Btm1mxt67MoLZINFA1+xGhFidT2hnNmso/WqWAreCLCjuRulLOXp9/RUN9ZXi\nUEMnpok/IM9fF5h762K0D/hj/pkXbgQ27HBIeYjuqrj3HunOMQOE7c0WjNeBpXpv\notUzGhVDA6ixQ6kAkbXF6PWelCV8m7Vq6riDDQhy3kfCmQY+f2MIMXwAcm98u/i4\nQ9jOv/eLAgMBAAECggEABB4NKf4+LfWgFkecJteTP8D16qAf09Rt+jMparQK8lLG\nUnF4HAV+z4wppgLBxq3anp8o997s6KFsIqdoADpUlZIfzzJLNhPi30UZj4WbBiSi\nuTSGX5vFr8e4AKtoGwUTPr8znfyXIeB8+Ovrdk0puqFmHGmetvf4jShPZxOAXmWg\nq8/9xQrb2dhY7nlZcpD0WLiPxDARs9MPtiYP6Ud9oriE3ku+jAX+OgYroJPjsFno\niJ9eFWSNVKa82DDZc3SDpt30iyAD+7WaOngCVPhKCmg687vaiNVCk4mnjsja1Zlk\nwyNUnfSR4q9iooiEgfmbSf/SnLj0O6uFVmHwsu2OyQKBgQDniE88oWrgsPZov9/M\n3PgNUv54dw0e+BdiNtytgjlF9F0L3Oe8h4S6J2EjMbFXUT5ltvr/waXxHECHnu1J\nw5biDnQ9QCp3I51av7R2D7Tg95TfnEJ8VYlwyZVLclA32VHto1mCkNN3OOHRFBLD\nspF4TP9rPfEcxlW/8ZLJFRdaGQKBgQDFIW8TSqihSWbWcWZWKW19OBkYvB5o89NJ\nMzpnU9TLKeyuezukLSRlZXV3niDlYXGwgiihXYhJOFAPhxk+kBAXP+hd13lG9SXR\nsxrORQjZg/c5ZmVY3iYN4PiQeSf/1CHiwLOA/3iZuaT2OvkaH1HAgwVO1AAatGlD\n3xYG3hDbQwKBgD9ncaN95MHRVDlNSiFU5czoTG161KoFcInh0j7lqX+BsrVb8k4L\noopD3HMB2bm6suax3DyLsEC95uH84KhRmpEfOi/H0Zk8tIu0cdve4z60Lh2qMf7Q\ngcnUOkEl9dfFeI0mLY320SIV/qj94UGcNgAGve+FT/D8U2Ez62mLkBCJAn8PZo1G\n9I44C4P9PN7B3HqxTbCoPgoiKOpYzafCaso1FRFokDgYm248fbCvp6rqQLKhF4oV\nETmUftHCZMuUF60qI9QDgNH4uS47M8LkWoBWffjSgy1nw/M1Il5I6y40zl3XWTas\n3UiOufIpSnIrmEbKw3GmtulLLM0MgGE4KCEpAoGAMQcdCGmQEHieaY9jB32V5mTa\n4/fAMfdcQyUl+3JxhMOTPWZx5Dy5sYRc0v7Gjw59Vr9KeIX4XyLDePBqHfB3epeo\ngQai8u6zkbzC+VoxHTNlyr/767dVIZ6FTtsAdHjJD978QG7EjCtI+TeNJDSGKUyL\nzTc+oGTfAGT7ccJvFtg=\n-----END PRIVATE KEY-----\n",
+  "client_email": "cryptosheetquoteeditor@cryptosheetquote.iam.gserviceaccount.com",
+  "client_id": "106456281923542951584",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cryptosheetquoteeditor%40cryptosheetquote.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
