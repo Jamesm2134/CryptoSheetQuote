@@ -5,11 +5,11 @@ import pygsheets
 import json
 
 
-api_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImJhM2E0MzgzLTc3NDYtNDRiMC1iMzM3LWI2ZDFiYzFjMGU4NyIsIm9yZ0lkIjoiMzQ1NjUzIiwidXNlcklkIjoiMzU1MzE2IiwidHlwZSI6IlBST0pFQ1QiLCJ0eXBlSWQiOiJiNmUzNjQ2Ny1iMTVhLTQyZjAtYWU1Ny0xYzY4ZDNkMDdlYmEiLCJpYXQiOjE2ODgwOTk1NjUsImV4cCI6NDg0Mzg1OTU2NX0.fhpSrYTpSXyvTWIYG--Mqs5ac-mjr6TZGpVB9suYBJs"
-wallet_address = '0xA12dCA97991575fFBEC9F75943c4A4B034d30f39'
+api_key = ""
+wallet_address = ''
 url = "https://deep-index.moralis.io/api/v2/erc20/prices?chain=arbitrum"
 
-service_file = r'C:\Users\jamck\new-eclipse-workplace\Python Projects\CryptoSheetQuote\cryptosheetquote-c2560d7d4554.json'
+service_file = ''
 gc = pygsheets.authorize(service_file=service_file)
 sheetname = 'CryptoSheetQuote'
 sh = gc.open(sheetname)
@@ -23,25 +23,14 @@ response = requests.get("https://api.exchangerate-api.com/v4/latest/USD")
 exchange_rates = response.json()["rates"]
 token_Data = evm_api.token.get_wallet_token_balances(api_key=api_key, params=params)
 token_Data_Length = len(token_Data)
-token_Data = evm_api.token.get_wallet_token_balances(api_key=api_key, params=params)
-result = evm_api.token.get_wallet_token_balances(
-    api_key=api_key,
-    params=params,
-)
-array_length = len(result)
-balance_result = evm_api.balance.get_native_balance(
-  api_key=api_key,
-  params=params,
-)
-print(balance_result)
 
-y = 2  
-for i in result:
+#retrieves the token addresses for all tokens in the wallet
+y=2
+for i in token_Data:
     token_contract_address = i['token_address']
-    wks.update_value(f"H{y}",  token_contract_address)
     y += 1
 
-# 
+
 payload = {
   "tokens": [
     {
@@ -53,174 +42,60 @@ headers = {
   "Accept": "application/json",
   "Content-Type": "application/json",
   "X-API-Key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6ImJhM2E0MzgzLTc3NDYtNDRiMC1iMzM3LWI2ZDFiYzFjMGU4NyIsIm9yZ0lkIjoiMzQ1NjUzIiwidXNlcklkIjoiMzU1MzE2IiwidHlwZSI6IlBST0pFQ1QiLCJ0eXBlSWQiOiJiNmUzNjQ2Ny1iMTVhLTQyZjAtYWU1Ny0xYzY4ZDNkMDdlYmEiLCJpYXQiOjE2ODgwOTk1NjUsImV4cCI6NDg0Mzg1OTU2NX0.fhpSrYTpSXyvTWIYG--Mqs5ac-mjr6TZGpVB9suYBJs"
-}
-   
+} 
 response = requests.request("POST", url, json=payload, headers=headers)
 response_data = json.loads(response.text)
-print(response_data)
-#
 
-#usd_price_result = evm_api.token.get_token_price(api_key=api_key,params=params,)
-#print(usd_price_result)
-#"message":"No pools found with enough liquidity, to calculate the price"}'
+# convert_balance_to_readable takes the quantity of each coin and turns it into a readable number
+decimal_Numbers = 0
+def convert_balance_to_readable(i, decimal_Numbers):
+    for i in token_Data:
+        decimal_Numbers = i['decimals']
+    if decimal_Numbers is None:
+        return None  
+    return float(i['balance']) / (10 ** decimal_Numbers)
 
+# updates the google sheet
 def update_sheet():
     wks.update_value('A1', 'Wallet Address')
-    wks.update_value('A4', 'Total Eth in Wallet')
     wks.update_value('C1', 'Tokens')
     wks.update_value('D1', 'Symbol')
     wks.update_value('E1', 'Quantity')
-    wks.update_value('F1', 'Price of Coin')
-    wks.update_value('G1', 'ETH Conversion') # NOT WORKING
-    wks.update_value('H1', 'Total Value (USD)')
-    wks.update_value('H1', 'Token Address')
-    wks.update_value('A2',  wallet_address)
-       
-print(result)
+    wks.update_value('F1', 'Token Address')
+    wks.update_value('A2',  wallet_address)      
 update_sheet()
 
-
-
-
-#names
-y = 2
-for tokens in token_Data:
-    wallet_tokens = tokens['name']
+# iterates through the array and pulls out all the tokens, if it finds a token it will print it in the google sheet, else it will skip
+y = 2  
+for token in token_Data:
+    wallet_tokens = token['name']
+    token_spam = token.get('possible_spam')  
     wks.update_value(f"C{y}", wallet_tokens)
     y += 1
     
     
-#symbols 
+# iterates through the array and pulls out all the tokens, If it finds a token it will print it in the Google sheet, else it will skip
 y = 2  
 for symbols in token_Data:
     wallet_symbols = symbols['symbol']
     wks.update_value(f"D{y}",  wallet_symbols)
     y += 1
-    
-    
-#quantity    
-def convert_balance_to_readable(balance):
-    return int(balance) / 10**18
-y=2
-for i in result:
-    token_contract_address = i['balance']
-    balance_readable = convert_balance_to_readable(token_contract_address)
-    wks.update_value(f"E{y}",  balance_readable)
-    y += 1
-    
 
-
-#possible spam
+# fetches the quantity from the array token data
 y = 2  
-#for i in token_Data:
-    #possible_spam_tokens = i['possible_spam']
-    #wks.update_value(f"I{y}",  possible_spam_tokens)
-    #y += 1
-    
-#price
-print(f"Number of items in response: {len(response_data)}")
-
-y = 2  # Initialize the value of y
-
-for item in response_data:
-    print("Inside loop")  # Add this line
-    usd_price = item(response_data, 'usdPrice')
-    if usd_price is not None:
-        wks.update_value(f"F{y}", usd_price)
+for token in token_Data:
+    token_Decimals = token.get('decimals')  
+    if token_Decimals is not None:
+        token_Price = float(token['balance']) / (10 ** token_Decimals)
+        wks.update_value(f"E{y}", token_Price)
         y += 1
     else:
-        continue
+        print(f"Skipping token at row {y}")
 
-
-    
-    
-
-
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-#= float(i[result]["balance"])*10**-abs(i[result]["decimals"])
-
-#total value / price = quantity
-
-#anything below this line is not working and commented out in my code
-#--------------------------------------------------------------------------------------------------------------
-#tokenAddresses = []
-#for i in range(token_Data_Length):
-    #tokenAddresses.append(token_Data[i]['token_address'])
-#y = 2
-#for eth_balance in tokenAddresses:
-    #eth_balance_usd = eth_balance['balance']
-    #wks.update_value(f"C{y}", eth_balance_usd)
-    #y += 1
-
-#y = 2
-#for i in range(token_Data_Length):
-    #tokenAdd = tokenAddresses[i]
-    
-#token_Price = evm_api.token.get_token_price(api_key=api_key, params={"address": tokenAdd,"chain": "eth"})
-#for usd_Price in token_Price: # NOT WORKING
-    #tokenAdd = tokenAddresses[i]
-    #token_Price = usd_Price['quantity']
-    #wks.update_value(f"F{y}",  token_Price)
-    #y += 1
-    
-
-#y = 2    
-#for total_Value in token_price:
-    #total_usd_value = total_Value['total_value_usd']
-    #wks.update_value(f"H{y}",  token_Price)
-    #y += 1
-    
-    
-#y = 2  
-#for quantity in token_Data: # NOT WORKING
-    #wallet_quantity = quantity['quantity']
-    #wks.update_value(f"E{y}",  wallet_quantity)
-    #y += 1  
-    
-print("Worked!!!")
-    
-
-
-    
-
-
-    
-
-
-
-
-    
-
-
-    
-
-
-    
-
+# Retrieves token addresses again and prints them in the google sheet
+y=2
+for i in token_Data:
+    token_contract_address = i['token_address']
+    wks.update_value(f"F{y}",  token_contract_address)
+    y += 1
+print("Google sheet sucessufully updated")
