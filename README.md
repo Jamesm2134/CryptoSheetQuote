@@ -7,5 +7,3 @@ The Crypto Wallet Tracker API is designed to provide real-time data for Ethereum
 
 ## Contact
 Email: jmck2134@gmail.com
-
-Linkedin: https://www.linkedin.com/in/jamesmckenna213/
